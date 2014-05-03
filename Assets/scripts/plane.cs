@@ -7,6 +7,7 @@ public class plane : MonoBehaviour {
 	public Transform planet;
 	public float speed = 50;
 	public float height = 10; 
+	public float threshhold = 30;
 
 	private Vector3 center = Vector3.zero; 
 	private float earth_radius;
@@ -14,6 +15,7 @@ public class plane : MonoBehaviour {
 
 	private Vector2 start_coords = new Vector2((float)40.7127,(float)74.0059);
 	private Vector2 end_coords = new Vector2((float)37.7833,(float)122.4167);
+
 
 	// Use this for initialization
 	void Start () {
@@ -40,16 +42,15 @@ public class plane : MonoBehaviour {
 		Vector3 end_point = getXYZCoords(end);
 
 		Vector3 dir = (end_point - start_point);
-		float dist = dir.magnitude;
-		dir = dir.normalized;
-		float interval = speed * Time.deltaTime;
+		float dist = (end_point - transform.position).magnitude;
 
-		//dont go farther than the end
-		if(interval > dist) interval = dist;
-		//apply movement for frame
-		transform.Translate(dir * interval);
-		//face the direction of travel
-		//transform.LookAt(end_point);
+		if (dist > threshhold) {
+				// rotates arround wrong axis!
+				transform.RotateAround (center, dir, Time.deltaTime * speed);
+		} else {
+			//if plane arrives destroy it
+			Destroy(gameObject);
+		}
 	}
 
 
