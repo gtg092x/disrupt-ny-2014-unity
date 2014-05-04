@@ -23,7 +23,8 @@ public class _ : MonoBehaviour {
 		LoadState(DateTime.Parse("02/13/1986"),DateTime.Parse("02/13/2036"),(state)=>{
 	
 			//Debug.Log (state.SelectMany(x=>x.AirLegs));
-			legs = ((List<Trip>)state).SelectMany(x=>x.AirLegs).ToList();
+
+			legs = ((List<Trip>)state).SelectMany(x=>x.AirLegs).ToList().OrderBy(x=>Guid.NewGuid()).ToList();
 
 			Debug.Log (legs);
 			Debug.Log (legs.Count);
@@ -48,6 +49,8 @@ public class _ : MonoBehaviour {
 
 
 		}
+		if (Input.GetKeyDown(KeyCode.Escape)) 
+			Application.Quit(); 
 
 	}
 
