@@ -11,6 +11,8 @@ public class plane_spawner : MonoBehaviour {
 	private Vector2 start_coords_2 = new Vector2((float)30.7127,(float)60.0059);
 	private Vector2 end_coords_2 = new Vector2((float)15.7833,(float)110.4167);
 
+
+
 	// Use this for initialization
 	void Start () {
 	
@@ -31,4 +33,6 @@ public class plane_spawner : MonoBehaviour {
 		plane plane = prefab.GetComponent<plane>();
 		plane.init(start, end);
 	}
+
+
 }

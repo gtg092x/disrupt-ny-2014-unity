@@ -19,7 +19,7 @@ public class plane : MonoBehaviour {
 		start_coords = start;
 		end_coords = end;
 		//set initial position
-		transform.position = getXYZCoords(start_coords);
+		transform.position = Utils.getXYZCoords(start_coords, plane_radius);
 	}
 
 
@@ -38,8 +38,8 @@ public class plane : MonoBehaviour {
 
 	//moves plane from one point to another alonge a sphere
 	void Fly(Vector2 start, Vector2 end){
-		Vector3 start_point = getXYZCoords(start);
-		Vector3 end_point = getXYZCoords(end);
+		Vector3 start_point = Utils.getXYZCoords (start, plane_radius);
+		Vector3 end_point = Utils.getXYZCoords (end, plane_radius);
 
 		Vector3 dir = (end_point - start_point);
 		float dist = (end_point - transform.position).magnitude;
@@ -52,26 +52,6 @@ public class plane : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-
-
-	//gets xyz coords from lat lon position and a given radius
-	Vector3 getXYZCoords(Vector2 coords){
-		Vector3 pos;
-		//multiply my -1 because of the way the earth model is set up
-		float lat = coords.x * -1;
-		float lon = coords.y;
-		
-		float cosLat = Mathf.Cos(lat * Mathf.PI / 180);
-		float sinLat = Mathf.Sin(lat * Mathf.PI / 180);
-		float cosLon = Mathf.Cos(lon * Mathf.PI / 180);
-		float sinLon = Mathf.Sin(lon * Mathf.PI / 180);
-
-		pos.x = plane_radius * cosLat * cosLon;
-		pos.y = plane_radius * cosLat * sinLon;
-		pos.z = plane_radius * sinLat;
-		return pos;
-	}
-
-
+	
 
 }
