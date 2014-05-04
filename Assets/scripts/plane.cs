@@ -4,7 +4,7 @@ using System.Collections;
 
 public class plane : MonoBehaviour {
 
-	public Transform planet;
+	//public Transform planet;
 	public float speed = 50;
 	public float height = 10; 
 	public float threshhold = 30;
@@ -20,8 +20,8 @@ public class plane : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		earth_radius = planet.lossyScale.x;
-		plane_radius = earth_radius + 10;
+		earth_radius = 1000;
+		plane_radius = earth_radius + height;
 
 		//set initial position
 		transform.position = getXYZCoords(start_coords);
@@ -43,10 +43,11 @@ public class plane : MonoBehaviour {
 
 		Vector3 dir = (end_point - start_point);
 		float dist = (end_point - transform.position).magnitude;
+		Vector3 axis = Vector3.Cross (start_point, end_point);
 
 		if (dist > threshhold) {
-				// rotates arround wrong axis!
-				transform.RotateAround (center, dir, Time.deltaTime * speed);
+			// rotates arround wrong axis!
+			transform.RotateAround (center, axis, Time.deltaTime * speed);
 		} else {
 			//if plane arrives destroy it
 			Destroy(gameObject);
