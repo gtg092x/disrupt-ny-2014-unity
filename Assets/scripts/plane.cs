@@ -47,11 +47,15 @@ public class plane : MonoBehaviour {
 
 		if (dist > threshhold) {
 			transform.RotateAround (center, axis, Time.deltaTime * speed);
+
+
 		} else {
 			//if plane arrives destroy it
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 	}
+
+
 	
 
 }
