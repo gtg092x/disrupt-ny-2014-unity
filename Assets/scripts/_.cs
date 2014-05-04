@@ -12,6 +12,10 @@ public class _ : MonoBehaviour {
 
 	public GameObject plane_prefab;
 	public List<TripLeg> legs;
+	private int legindex = 0;
+	private float nextActionTime = 0.0f;
+
+	public List<TripLeg> hotels;
 
 	// Use this for initialization
 	void Start () {
@@ -20,27 +24,41 @@ public class _ : MonoBehaviour {
 	
 			//Debug.Log (state.SelectMany(x=>x.AirLegs));
 			legs = ((List<Trip>)state).SelectMany(x=>x.AirLegs).ToList();
+
 			Debug.Log (legs);
 			Debug.Log (legs.Count);
 			Debug.Log (legs.Where(x=>x.StartLocation==x.EndLocation));
 
-			legs.ForEach(leg=>createPlane (leg .StartLocation, leg.EndLocation));
-			//createPlane (legs [1].StartLocation, legs [1].EndLocation);
-
 		});
 	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
 
+		float timeInterval = UnityEngine.Random.Range (0.5f, 2.0f);
+		if (Time.time > nextActionTime ) {
+			nextActionTime += timeInterval;
+
+			createPlane(legs[legindex].StartLocation, legs[legindex].EndLocation);
+			//legindex = (legindex > legs.Count) ? 0 : legindex++;
+			legindex++;
+			if(legindex >= legs.Count){legindex=0;}
+
+
+		}
 
 	}
+
+
 
 	void createPlane(Vector2 start, Vector2 end){
 		GameObject prefab = (GameObject)Instantiate(plane_prefab);
 		plane plane = prefab.GetComponent<plane>();
 		plane.init(start, end);
 	}
+	
 
 	List<TripLeg> getLegs(List<Trip> trips){
 		var legs = trips.SelectMany (trip => trip.Bookings)

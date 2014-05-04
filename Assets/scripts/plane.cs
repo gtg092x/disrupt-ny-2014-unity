@@ -46,7 +46,8 @@ public class plane : MonoBehaviour {
 		Vector3 axis = Vector3.Cross (start_point, end_point);
 
 		if (dist > threshhold) {
-			transform.RotateAround (center, axis, Time.deltaTime * speed);
+			float dspeed = Random.Range(speed + 2, speed -2);
+			transform.RotateAround (center, axis, Time.deltaTime * dspeed);
 			//rotate plane model to face direction of movement
 			GameObject model = transform.FindChild("Model").gameObject;
 			//model.transform.rotation = Quaternion.LookRotation(dir);
@@ -56,6 +57,10 @@ public class plane : MonoBehaviour {
 			//if plane arrives destroy it
 			Destroy(gameObject);
 		}
+	}
+
+	void DrawTrail(Vector3 dir, Vector3 start, Vector3 end){
+
 	}
 
 
