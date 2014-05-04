@@ -11,8 +11,10 @@ GameObject:
   - 33: {fileID: 3300000}
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
-  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   - 96: {fileID: 9600000}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: plane 1
   m_TagString: Untagged
@@ -170,7 +172,7 @@ TrailRenderer:
   - {fileID: 2100000, guid: 955e165bfc471424fba225e6c6607742, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
+  m_UseLightProbes: 1
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
@@ -188,7 +190,7 @@ TrailRenderer:
       rgba: 16777215
     m_Color[2]:
       serializedVersion: 2
-      rgba: 4279882198
+      rgba: 4294967295
     m_Color[3]:
       serializedVersion: 2
       rgba: 16777215
@@ -203,6 +205,31 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c38d55eeba84a62812bc9cc338ab83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emit: 1
+  emitTime: 0
+  material: {fileID: 2100000, guid: 955e165bfc471424fba225e6c6607742, type: 2}
+  lifeTime: 1
+  colors: []
+  sizes: []
+  uvLengthScale: .00999999978
+  higherQualityUVs: 1
+  movePixelsForRebuild: 15
+  maxRebuildTime: .100000001
+  minVertexDistance: .100000001
+  maxVertexDistance: 10
+  maxAngle: 3
+  autoDestruct: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83cd3a72c89174ac8a5fe9f0b66de2da, type: 3}
@@ -211,6 +238,30 @@ MonoBehaviour:
   speed: 5
   height: 10
   threshhold: 30
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03db186b4d9b4bb58d44b73c47ce9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 955e165bfc471424fba225e6c6607742, type: 2}
+  emit: 1
+  lifeTime: 100
+  colors:
+  - {r: .929435611, g: .941176474, b: .0899653733, a: 0}
+  widths:
+  - 10
+  maxAngle: 20
+  minVertexDistance: 10
+  maxVertexDistance: 10
+  optimizeAngleInterval: 10
+  optimizeDistanceInterval: 1
+  optimizeCount: 30
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
