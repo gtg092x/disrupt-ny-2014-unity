@@ -10,6 +10,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 namespace AssemblyCSharp
 {
 		public class Trip
@@ -19,6 +20,31 @@ namespace AssemblyCSharp
 				{
 					Bookings = new List<TripBooking> ();
 				}
+		public List<TripLeg> AirLegs{
+			get{
+				return getLegMode("Air");
+			}
+		}
+
+		public List<TripLeg> HotelLegs{
+			get{
+				return getLegMode("Hotel");
+			}
+		}
+
+		public List<TripLeg> CarLegs{
+			get{
+				return getLegMode("Car");
+			}
+		}
+
+			public List<TripLeg> getLegMode(String mode){
+			return this.Bookings
+				.SelectMany (booking => booking.Segments)
+					.Where(seg=>seg.Mode==mode)
+					.SelectMany (seg => seg.Legs)
+					.ToList ();
+			}
 		}
 }
 

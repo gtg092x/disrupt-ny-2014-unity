@@ -15,13 +15,17 @@ public class _ : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+	
 		LoadState(DateTime.Parse("02/13/1986"),DateTime.Parse("02/13/2036"),(state)=>{
-			Debug.Log (state);
-			legs = getLegs ((List<Trip>)state);
+	
+			//Debug.Log (state.SelectMany(x=>x.AirLegs));
+			legs = ((List<Trip>)state).SelectMany(x=>x.AirLegs).ToList();
+			Debug.Log (legs);
+			Debug.Log (legs.Count);
+			Debug.Log (legs.Where(x=>x.StartLocation==x.EndLocation));
 
-			Debug.Log (legs[1].StartLocation);
-			Debug.Log (legs[1].EndLocation);
-			createPlane (legs [1].StartLocation, legs [1].EndLocation);
+			legs.ForEach(leg=>createPlane (leg .StartLocation, leg.EndLocation));
+			//createPlane (legs [1].StartLocation, legs [1].EndLocation);
 
 		});
 	}
@@ -61,7 +65,7 @@ public class _ : MonoBehaviour {
 		return new Vector2 (x,y);
 	}
 
-	public void LoadState(DateTime start,DateTime end, Action<IList> onComplete){
+	public void LoadState(DateTime start,DateTime end, Action<List<Trip>> onComplete){
 		getJSON(String.Format("http://disrupt.digitaltaffy.com/trips-summary?startDate={0}&endDate={1}",start.ToString("MM/dd/yyyy"),end.ToString("MM/dd/yyyy")),(json)=>{
 
 			List<Trip> result = new List<Trip>();
