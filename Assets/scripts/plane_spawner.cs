@@ -8,13 +8,14 @@ public class plane_spawner : MonoBehaviour {
 	private Vector2 start_coords_1 = new Vector2((float)40.7127,(float)74.0059);
 	private Vector2 end_coords_1 = new Vector2((float)37.7833,(float)122.4167);
 
-	private Vector2 start_coords_2 = new Vector2((float)40.7127,(float)74.0059);
-	private Vector2 end_coords_2 = new Vector2((float)37.7833,(float)122.4167);
+	private Vector2 start_coords_2 = new Vector2((float)30.7127,(float)60.0059);
+	private Vector2 end_coords_2 = new Vector2((float)15.7833,(float)110.4167);
 
 	// Use this for initialization
 	void Start () {
 	
-		createPlane();
+		createPlane(start_coords_1, end_coords_1);
+		createPlane(start_coords_2, end_coords_2);
 
 	}
 	
@@ -23,12 +24,11 @@ public class plane_spawner : MonoBehaviour {
 		
 
 
-
-
 	}
 
-	void createPlane(){
-		Object plane = Instantiate(plane_prefab);
-		//plane.GetComponent.<plane>().speed = 50;
+	void createPlane(Vector2 start, Vector2 end){
+		GameObject prefab = (GameObject)Instantiate(plane_prefab);
+		plane plane = prefab.GetComponent<plane>();
+		plane.init(start, end);
 	}
 }
