@@ -40,11 +40,11 @@ public class _ : MonoBehaviour {
 		float timeInterval = UnityEngine.Random.Range (0.5f, 1.0f);
 		if (Time.time > nextActionTime ) {
 			nextActionTime += timeInterval;
-
+			if(legs!=null && legs[legindex]!=null)
 			createPlane(legs[legindex].StartLocation, legs[legindex].EndLocation);
 			//legindex = (legindex > legs.Count) ? 0 : legindex++;
 			legindex++;
-			if(legindex >= legs.Count){legindex=0;}
+			if(legs!=null && legindex >= legs.Count){legindex=0;}
 
 
 		}

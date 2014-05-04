@@ -39,8 +39,13 @@ public class plane : MonoBehaviour {
 		//this is lat lon position
 		Fly (start_coords, end_coords);
 
-		GameObject sphere = transform.FindChild ("Sphere").gameObject;
-		sphere.transform.position = Utils.getXYZCoords (start_coords, plane_radius);
+		var parent = transform.FindChild ("Sphere");
+		if (parent != null) {
+						GameObject sphere = parent.gameObject;
+				var nextPosition = Utils.getXYZCoords (start_coords, plane_radius);
+				
+				sphere.transform.position = nextPosition;
+		}
 	}
 	
 
@@ -55,9 +60,18 @@ public class plane : MonoBehaviour {
 
 		if (dist > threshhold) {
 			float dspeed = Random.Range(speed + 2, speed -2);
+
+
+			var last = transform.position;
 			transform.RotateAround (center, axis, Time.deltaTime * dspeed);
+			var next = transform.position;
+
+			var direction = (next-last).normalized;
+
+
 			//rotate plane model to face direction of movement
 			GameObject model = transform.FindChild("Model").gameObject;
+			model.transform.rotation = Quaternion.LookRotation(direction);
 			//model.transform.rotation = Quaternion.LookRotation(dir);
 
 
