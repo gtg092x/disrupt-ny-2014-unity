@@ -25,6 +25,15 @@ public class plane : MonoBehaviour {
 		start_sphere.transform.localScale = new Vector3(10,10,10);
 		start_sphere.transform.position = Utils.getXYZCoords(start_coords, plane_radius);
 		start_sphere.transform.parent = transform;
+
+		GameObject model = transform.FindChild ("Model").gameObject;
+		GameObject mesh = model.transform.FindChild ("Mesh").gameObject;
+		if (Random.Range (0, 2) > 0) {
+			mesh.renderer.material.color = Color.blue;
+		} else {
+			mesh.renderer.material.color = Color.red;
+		}
+
 	}
 
 
