@@ -20,6 +20,10 @@ public class plane : MonoBehaviour {
 		end_coords = end;
 		//set initial position
 		transform.position = Utils.getXYZCoords(start_coords, plane_radius);
+		GameObject start_sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+		start_sphere.renderer.material.color = Color.yellow;
+		start_sphere.transform.localScale = new Vector3(10,10,10);
+		start_sphere.transform.position = Utils.getXYZCoords(start_coords, plane_radius);
 	}
 
 
