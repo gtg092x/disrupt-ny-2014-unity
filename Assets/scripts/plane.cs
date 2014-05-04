@@ -24,6 +24,7 @@ public class plane : MonoBehaviour {
 		start_sphere.renderer.material.color = Color.yellow;
 		start_sphere.transform.localScale = new Vector3(10,10,10);
 		start_sphere.transform.position = Utils.getXYZCoords(start_coords, plane_radius);
+		start_sphere.transform.parent = transform;
 	}
 
 
@@ -37,6 +38,9 @@ public class plane : MonoBehaviour {
 	void Update () {
 		//this is lat lon position
 		Fly (start_coords, end_coords);
+
+		GameObject sphere = transform.FindChild ("Sphere").gameObject;
+		sphere.transform.position = Utils.getXYZCoords (start_coords, plane_radius);
 	}
 	
 

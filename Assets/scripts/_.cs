@@ -37,7 +37,7 @@ public class _ : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		float timeInterval = UnityEngine.Random.Range (0.5f, 2.0f);
+		float timeInterval = UnityEngine.Random.Range (0.5f, 1.0f);
 		if (Time.time > nextActionTime ) {
 			nextActionTime += timeInterval;
 

@@ -69,6 +69,7 @@ GameObject:
   - 4: {fileID: 289}
   - 33: {fileID: 592}
   - 23: {fileID: 575}
+  - 114: {fileID: 13}
   m_Layer: 0
   m_Name: Clouds
   m_TagString: Untagged
@@ -76,6 +77,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &13
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 12}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dee8d72290c54b43866f45c85bad080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &279
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +565,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Time: 6
+  m_Time: 20
   m_StartWidth: 1.5
   m_EndWidth: 1.5
   m_Colors:
@@ -648,6 +660,10 @@ Prefab:
     - target: {fileID: 400000, guid: af36bff61bec7443f9e2e9915c1f7acb, type: 2}
       propertyPath: m_LocalRotation.w
       value: .625635087
+      objectReference: {fileID: 0}
+    - target: {fileID: 9600000, guid: af36bff61bec7443f9e2e9915c1f7acb, type: 2}
+      propertyPath: m_Time
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af36bff61bec7443f9e2e9915c1f7acb, type: 2}
