@@ -22,9 +22,8 @@ public class Utils
 		//gets xyz coords from lat lon position and a given radius
 		public static Vector3 getXYZCoords(Vector2 coords, float radius){
 			Vector3 pos;
-			//multiply my -1 because of the way the earth model is set up
-			float lat = coords.x * -1;
-			float lon = coords.y;
+			float lat = coords.y * -1;
+			float lon = coords.x * -1;
 			
 			float cosLat = Mathf.Cos(lat * Mathf.PI / 180);
 			float sinLat = Mathf.Sin(lat * Mathf.PI / 180);

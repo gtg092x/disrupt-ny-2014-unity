@@ -15,15 +15,16 @@ public class plane_spawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-		createPlane(start_coords_1, end_coords_1);
-		createPlane(start_coords_2, end_coords_2);
+
+
+
+		//createPlane(start_coords_1, end_coords_1);
+		//createPlane(start_coords_2, end_coords_2);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 
 
 	}

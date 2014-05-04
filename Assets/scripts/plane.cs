@@ -49,7 +49,7 @@ public class plane : MonoBehaviour {
 			transform.RotateAround (center, axis, Time.deltaTime * speed);
 			//rotate plane model to face direction of movement
 			GameObject model = transform.FindChild("Model").gameObject;
-			model.transform.rotation = Quaternion.LookRotation(dir);
+			//model.transform.rotation = Quaternion.LookRotation(dir);
 
 
 		} else {

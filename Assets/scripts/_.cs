@@ -4,20 +4,48 @@ using System.Collections.Generic;
 using System;
 using AssemblyCSharp;
 using MiniJSON;
+using System.Linq;
+
 public class _ : MonoBehaviour {
 	public bool Paused;
 	public float Elapsed;
+
+	public GameObject plane_prefab;
+	public List<TripLeg> legs;
 
 	// Use this for initialization
 	void Start () {
 		LoadState(DateTime.Parse("02/13/1986"),DateTime.Parse("02/13/2036"),(state)=>{
 			Debug.Log (state);
+			legs = getLegs ((List<Trip>)state);
+
+			Debug.Log (legs[1].StartLocation);
+			Debug.Log (legs[1].EndLocation);
+			createPlane (legs [1].StartLocation, legs [1].EndLocation);
+
 		});
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+
+	}
+
+	void createPlane(Vector2 start, Vector2 end){
+		GameObject prefab = (GameObject)Instantiate(plane_prefab);
+		plane plane = prefab.GetComponent<plane>();
+		plane.init(start, end);
+	}
+
+	List<TripLeg> getLegs(List<Trip> trips){
+		var legs = trips.SelectMany (trip => trip.Bookings)
+						.SelectMany (booking => booking.Segments)
+						.SelectMany (seg => seg.Legs)
+						.ToList ();
+
+		Debug.Log (legs);
+		return legs;
 	}
 
 	public Vector2? getLocation(IDictionary obj,string key){
@@ -85,7 +113,7 @@ public class _ : MonoBehaviour {
 
 	void FixedUpdate(){
 		if (!Paused)
-				Elapsed = Time.fixedDeltaTime;
+				Elapsed += Time.fixedDeltaTime;
 	}
 	void Reset(){
 		Elapsed = 0f;
